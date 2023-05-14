@@ -1,0 +1,154 @@
+.navbar-custom {
+    height: 150px;
+    background: linear-gradient(to right, #577C57, #BCD1B3);
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    font-weight: 500;
+}
+  
+.navbar-brand {
+    margin-left: 150px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    color: white !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+  
+.nav-link {
+    margin-left: 50px;
+}
+  
+.navbar-collapse {
+    justify-content: flex-end;
+}
+  
+.navbar-nav {
+    margin-right: 100px;
+}
+
+.navbar-nav .btn-primary {
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    color: #afaaaad3;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    margin-left: 10px;
+}
+  
+.navbar-nav .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #577C57;
+}
+
+.navbar-nav .loginButton {
+    margin-right: 10px; 
+}
+
+.navbar-nav .registerButton {
+    margin-left: 10px; 
+}
+
+.modal-header {
+    background-color: #577C57;
+    color: white;
+    border-bottom: none;
+}
+  
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+  
+.modal-body {
+    padding: 1rem;
+}
+
+.navbar-nav .user-icon {
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+    margin-left: 28px;
+}
+
+.navbar-nav .user-icon:hover {
+    filter: brightness(0) invert(1);
+}
+
+.navbar-nav .logoutButton {
+    margin-top: 10px;
+    height: 35px;
+}
+
+@media (max-width: 1080px) {
+
+    .navbar-custom {
+      height: auto;
+      flex-direction: column;
+      align-items: end;
+    }
+    
+    .navbar-brand {
+      margin: 10px 0;
+    }
+    
+    .nav-link {
+      margin: 10px 0;
+    }
+    
+    .navbar-collapse {
+      justify-content: center;
+    }
+    
+    .navbar-nav {
+      margin: 10px 0;
+    }
+    
+    .navbar-nav .btn-primary {
+      margin: 10px 0;
+    }
+    
+    .user-icon {
+      margin: 10px 0;
+    }
+}
+
+@media (max-width: 1280px) {
+    
+    .navbar-brand {
+        
+        margin-right: 20px;
+    }
+    
+    .nav-link {
+      margin: 10px 0;
+    }
+    
+    .navbar-collapse {
+      justify-content: center;
+    }
+    
+    .navbar-nav {
+      margin: 10px 0;
+    }
+    
+    .navbar-nav .btn-primary {
+      margin-left: 20px;
+    }
+    
+    .user-icon {
+      margin: 10px 0;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 30px;
+    }
+}

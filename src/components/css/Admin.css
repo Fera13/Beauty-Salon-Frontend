@@ -1,0 +1,36 @@
+.admin-full{
+  background-image: url("../backgrounds/Admin_beauty_salon.png") !important;
+  height: 2000px;
+}
+
+.accordion-section {
+  background-color: none !important;
+}
+
+.colored-btn{
+  background: linear-gradient(to right, #577a57, #BCD1B3);
+  color: black !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  border: 2px solid #5a3204 !important;
+}
+
+.accordion-item, .accordion{
+  background-color: rgba(59, 200, 115, 0.5) !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.loyal-list-item {
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(59, 200, 115, 0.8) !important;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.page-btn{
+  margin-right: 20px;
+}
