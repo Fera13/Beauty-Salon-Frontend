@@ -20,7 +20,7 @@ function User() {
 
   const handleUpdateEmailClick = async () => {
     const response = await fetch(
-      "https://beauty-salon-backend.onrender.com/admin/updateUser",
+      "https://backend-saloon.onrender.com/admin/updateUser",
       {
         method: "PUT",
         headers: {
@@ -39,7 +39,7 @@ function User() {
 
   const handleUpdatePhoneNumberClick = async () => {
     const response = await fetch(
-      "https://beauty-salon-backend.onrender.com/admin/updateUser",
+      "https://backend-saloon.onrender.com/admin/updateUser",
       {
         method: "PUT",
         headers: {
@@ -58,7 +58,7 @@ function User() {
 
   const handleUserBookings = async () => {
     const response = await fetch(
-      `https://beauty-salon-backend.onrender.com/bookings/getBookingsByUserId`,
+      `https://backend-saloon.onrender.com/bookings/getBookingsByUserId`,
       {
         method: "GET",
         headers: {
@@ -73,7 +73,7 @@ function User() {
       const bookingsWithService = await Promise.all(
         data.map(async (booking) => {
           const serviceResponse = await fetch(
-            `https://beauty-salon-backend.onrender.com/services/getServiceById/${booking.service_id}`,
+            `https://backend-saloon.onrender.com/services/getServiceById/${booking.service_id}`,
             {
               method: "GET",
               headers: {
@@ -107,7 +107,7 @@ function User() {
   };
   const fetchUserData = async () => {
     const response = await fetch(
-      `https://beauty-salon-backend.onrender.com/users/getUserData`,
+      `https://backend-saloon.onrender.com/users/getUserData`,
       {
         method: "GET",
         headers: {},
@@ -140,7 +140,7 @@ function User() {
     if (bookingToDelete) {
       const packet = { _id: bookingToDelete };
       const response = await fetch(
-        `https://beauty-salon-backend.onrender.com/bookings/deleteBooking`,
+        `https://backend-saloon.onrender.com/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),

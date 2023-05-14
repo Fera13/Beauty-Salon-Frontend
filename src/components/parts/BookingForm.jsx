@@ -15,16 +15,13 @@ export function BookingForm({
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      await fetch(
-        "https://beauty-salon-backend.onrender.com/users/getUserData",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      )
+      await fetch("https://backend-saloon.onrender.com/users/getUserData", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
         .then((response) => {
           if (response.status === 200) {
             return response.json();
@@ -46,17 +43,14 @@ export function BookingForm({
       useCoupon: useCoupon,
       status: true,
     };
-    await fetch(
-      `https://beauty-salon-backend.onrender.com/bookings/postBooking`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(Data),
-      }
-    ).then(async (result) => {
+    await fetch(`https://backend-saloon.onrender.com/bookings/postBooking`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(Data),
+    }).then(async (result) => {
       if (result.status === 200) {
         const timeSlots = { start, end };
         onTimeSlotsChange(timeSlots);

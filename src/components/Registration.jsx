@@ -38,7 +38,7 @@ export function Registration({ isAdmin }) {
     };
     if (isAdmin) {
       const response = await fetch(
-        "https://beauty-salon-backend.onrender.com/admin/addAdmin",
+        "https://backend-saloon.onrender.com/admin/addAdmin",
         {
           method: "POST",
           body: JSON.stringify(packet),
@@ -56,7 +56,7 @@ export function Registration({ isAdmin }) {
       }
     } else {
       const response = await fetch(
-        "https://beauty-salon-backend.onrender.com/users/register",
+        "https://backend-saloon.onrender.com/users/register",
         {
           method: "POST",
           body: JSON.stringify(packet),

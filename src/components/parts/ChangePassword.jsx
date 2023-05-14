@@ -13,7 +13,7 @@ function ChangePassword(props) {
 
   const fetchUserData = async () => {
     const response = await fetch(
-      `https://beauty-salon-backend.onrender.com/users/getUserData`,
+      `https://backend-saloon.onrender.com/users/getUserData`,
       {
         method: "GET",
         headers: {},
@@ -45,7 +45,7 @@ function ChangePassword(props) {
     }
 
     const response = await fetch(
-      "https://beauty-salon-backend.onrender.com/admin/updateUser",
+      "https://backend-saloon.onrender.com/admin/updateUser",
       {
         method: "PUT",
         headers: {

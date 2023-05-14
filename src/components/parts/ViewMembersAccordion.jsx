@@ -19,7 +19,7 @@ export function ViewMembersAccordion() {
   useEffect(() => {
     (async () => {
       let users = await (
-        await fetch(`https://beauty-salon-backend.onrender.com/admin/getUsers`)
+        await fetch(`https://backend-saloon.onrender.com/admin/getUsers`)
       ).json();
       setMemberList(users);
     })();
@@ -69,7 +69,7 @@ export function ViewMembersAccordion() {
     (async () => {
       const packet = { id, username, email, phoneNumber, couponAmount };
       let response = await fetch(
-        `https://beauty-salon-backend.onrender.com/admin/updateUser`,
+        `https://backend-saloon.onrender.com/admin/updateUser`,
         {
           method: "PUT",
           body: JSON.stringify(packet),
@@ -116,7 +116,7 @@ export function ViewMembersAccordion() {
     (async () => {
       const packet = { id };
       let response = await fetch(
-        `https://beauty-salon-backend.onrender.com/admin/removeUser`,
+        `https://backend-saloon.onrender.com/admin/removeUser`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),

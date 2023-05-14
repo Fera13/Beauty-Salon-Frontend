@@ -15,7 +15,7 @@ export const ServicePage = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "https://beauty-salon-backend.onrender.com/services/getServices",
+          "https://backend-saloon.onrender.com/services/getServices",
           {
             method: "GET",
           }

@@ -22,7 +22,7 @@ export function AdminPage() {
     (async () => {
       let loyal = await (
         await fetch(
-          `https://beauty-salon-backend.onrender.com/statistic/getMostLoyal`
+          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
         )
       ).json();
       setLoyalList(loyal);
@@ -30,7 +30,7 @@ export function AdminPage() {
     (async () => {
       let loyal = await (
         await fetch(
-          `https://beauty-salon-backend.onrender.com/statistic/getMostLoyal`
+          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
         )
       ).json();
       setLoyalList(loyal);

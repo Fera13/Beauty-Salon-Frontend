@@ -19,7 +19,7 @@ export function ViewAdminsAccordion() {
   useEffect(() => {
     (async () => {
       let admins = await (
-        await fetch(`https://beauty-salon-backend.onrender.com/admin/getAdmins`)
+        await fetch(`https://backend-saloon.onrender.com/admin/getAdmins`)
       ).json();
       setAdminList(admins);
     })();
@@ -65,7 +65,7 @@ export function ViewAdminsAccordion() {
     (async () => {
       const packet = { id, username, email, phoneNumber };
       let response = await fetch(
-        `https://beauty-salon-backend.onrender.com/admin/updateAdmin`,
+        `https://backend-saloon.onrender.com/admin/updateAdmin`,
         {
           method: "PUT",
           body: JSON.stringify(packet),
@@ -109,7 +109,7 @@ export function ViewAdminsAccordion() {
     (async () => {
       const packet = { id };
       let response = await fetch(
-        `https://beauty-salon-backend.onrender.com/admin/removeAdmin`,
+        `https://backend-saloon.onrender.com/admin/removeAdmin`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),

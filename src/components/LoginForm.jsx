@@ -27,7 +27,7 @@ export const Login = (props) => {
 
     try {
       const response = await fetch(
-        "https://beauty-salon-backend.onrender.com/users/login",
+        "https://backend-saloon.onrender.com/users/login",
         {
           method: "POST",
           headers: {
