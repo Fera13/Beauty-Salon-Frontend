@@ -28,7 +28,7 @@ function NavigationBar() {
   };
 
   const handleUserIconClick = () => {
-    fetch("https://backend-saloon.onrender.com/users/getUserData", {
+    fetch("http://localhost:3000/users/getUserData", {
       method: "GET",
       credentials: "include",
     })
@@ -72,78 +72,75 @@ function NavigationBar() {
   }
 
   return (
-    <Navbar
-      bg="light"
-      expand="md"
-      sticky="top"
-      className="navbar-custom"
-      collapseOnSelect={true}
-    >
-      {showModal ? (
-        <ConfirmationModal
-          sentance={"Your session has expired"}
-          onClose={() => setShowModal(false)}
-        />
-      ) : null}
-      <Navbar.Brand className="brand-name">HKR Beauty Salon</Navbar.Brand>
-      <Navbar.Toggle aria-controls="my-navbar" />
-      <Navbar.Collapse id="my-navbar">
-        <Nav className="mr-auto menu">
-          <Nav.Link as={Link} to="/">
-            {" "}
-            Home{" "}
-          </Nav.Link>
-          <Nav.Link as={Link} to="/services">
-            {" "}
-            Services{" "}
-          </Nav.Link>
-          <Nav.Link as={Link} to="/about">
-            {" "}
-            About{" "}
-          </Nav.Link>
-          <Nav.Link as={Link} to="/contactus">
-            {" "}
-            Contact us{" "}
-          </Nav.Link>
-        </Nav>
-        <Nav className="navbar-nav">
-          {!loggedIn ? (
-            <div>
-              <Button
-                className="loginButton"
-                variant="primary"
-                onClick={handleLoginClick}
-              >
-                Login
-              </Button>
-              <Button
-                className="registerButton"
-                variant="primary"
-                as={Link}
-                to="/registration"
-              >
-                Register
-              </Button>
-            </div>
-          ) : (
-            <div className="d-flex justify-content-center nav-loggedin">
-              <img
-                className="user-icon"
-                src="./src/components/Images/icons8-male-user-48.png"
-                alt="User Icon"
-                onClick={handleUserIconClick}
-              />
-              <Button
-                className="ml-3 logoutButton"
-                variant="primary"
-                onClick={handleLogoutClick}
-              >
-                Logout
-              </Button>
-            </div>
-          )}
-        </Nav>
-      </Navbar.Collapse>
+    <>
+      <Navbar
+        bg="light"
+        expand="lg"
+        sticky="top"
+        className="navbar-custom"
+        collapseOnSelect={true}
+      >
+        {showModal ? (
+          <ConfirmationModal
+            sentance={"Your session has expired"}
+            onClose={() => setShowModal(false)}
+          />
+        ) : null}
+        <Navbar.Brand className="brand-name">HKR Beauty Salon</Navbar.Brand>
+        <Navbar.Toggle aria-controls="my-navbar" />
+        <Navbar.Collapse id="my-navbar">
+          <Nav className="mr-auto menu">
+            <Nav.Link as={Link} to="/">
+              {" "}
+              Home{" "}
+            </Nav.Link>
+            <Nav.Link as={Link} to="/services">
+              {" "}
+              Services{" "}
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              {" "}
+              About{" "}
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contactus">
+              {" "}
+              Contact us{" "}
+            </Nav.Link>
+          </Nav>
+          <Nav className="navbar-nav">
+            {!loggedIn ? (
+              <div>
+                <Button
+                  className="loginButton"
+                  variant="primary"
+                  onClick={handleLoginClick}
+                >
+                  Login
+                </Button>
+                <Button
+                  className="registerButton"
+                  variant="primary"
+                  as={Link}
+                  to="/registration"
+                >
+                  Register
+                </Button>
+              </div>
+            ) : (
+              <div className="d-flex justify-content-center nav-loggedin">
+                <div className="user-icon" onClick={handleUserIconClick} />
+                <Button
+                  className="ml-3 logoutButton"
+                  variant="primary"
+                  onClick={handleLogoutClick}
+                >
+                  Logout
+                </Button>
+              </div>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <Modal show={showLoginForm} onHide={handleLoginClose}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
@@ -152,7 +149,7 @@ function NavigationBar() {
           <Login onLoginSuccess={handleLoginSuccess} />
         </Modal.Body>
       </Modal>
-    </Navbar>
+    </>
   );
 }
 

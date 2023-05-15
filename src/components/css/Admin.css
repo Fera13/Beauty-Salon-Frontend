@@ -34,3 +34,16 @@
 .page-btn{
   margin-right: 20px;
 }
+
+.table-title{
+  color: rgb(143, 61, 36);
+  text-align: left;
+}
+
+.table-title-book{
+  color: rgb(143, 61, 36);
+}
+
+.confirmed{
+  color: rgb(11, 80, 55);
+}

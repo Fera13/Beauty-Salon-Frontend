@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Navbar, Nav, Button, Modal } from "react-bootstrap";
 import "./css/LoginForm.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorPopup } from "./parts/ErrorPopup";
+import { GoogleLogin } from "./GoogleLogin";
 
 export const Login = (props) => {
   const { showPopup } = useParams();
@@ -26,17 +28,14 @@ export const Login = (props) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://backend-saloon.onrender.com/users/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const response = await fetch("http://localhost:3000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ username, password }),
+      });
 
       const data = await response.json();
 
@@ -89,6 +88,9 @@ export const Login = (props) => {
           required
         />
         <button type="submit">Log In</button>
+        <Button className="googleButton" variant="primary">
+          <GoogleLogin />
+        </Button>
       </form>
       {loginStatus !== null && (
         <p className={`message ${loginStatus ? "success" : "error"}`}>

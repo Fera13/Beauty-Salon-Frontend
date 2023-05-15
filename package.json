@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"cd backend && npm run dev\"",
     "build": "vite build",
     "start": "vite",
     "preview": "vite preview",
@@ -27,6 +27,7 @@
     "react-bootstrap": "^2.7.4",
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
+    "react-google-login": "^5.2.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router": "^6.9.0",
     "react-router-dom": "^6.10.0"

@@ -27,21 +27,18 @@ export function ViewBookingsAccordion() {
   useEffect(() => {
     (async () => {
       const bookings = await (
-        await fetch(
-          `https://backend-saloon.onrender.com/bookings/getBookings`,
-          {
-            method: "GET",
-            headers: {},
-            credentials: "include",
-          }
-        )
+        await fetch(`http://localhost:3000/bookings/getBookings`, {
+          method: "GET",
+          headers: {},
+          credentials: "include",
+        })
       ).json();
 
       const tempServiceList = await Promise.all(
         bookings.map(async (booking) => {
           const service = await (
             await fetch(
-              `https://backend-saloon.onrender.com/services/getServiceById/${booking.service_id}`
+              `http://localhost:3000/services/getServiceById/${booking.service_id}`
             )
           ).json();
           return service;
@@ -59,7 +56,7 @@ export function ViewBookingsAccordion() {
         bookingList.map(async (booking) => {
           const user = await (
             await fetch(
-              `https://backend-saloon.onrender.com/users/getUserData/${booking.user_id}`
+              `http://localhost:3000/users/getUserData/${booking.user_id}`
             )
           ).json();
           return user.username;
@@ -76,7 +73,7 @@ export function ViewBookingsAccordion() {
     (async () => {
       const packet = { _id };
       let response = await fetch(
-        `https://backend-saloon.onrender.com/bookings/deleteBooking`,
+        `http://localhost:3000/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),
@@ -100,18 +97,29 @@ export function ViewBookingsAccordion() {
     })();
   };
 
-  /*{
-    "_id": "644fc306d2e036b3637de91a",
-    "service_id": "644c378a049948fffb0a19d7",
-    "employee_id": "644a83d1f0a732d4a429ab87",
-    "user_id": "64482117371250416b683ec6",
-    "startTime": "2023-12-12T08:00:00.000Z",
-    "endTime": "2023-12-12T09:00:00.000Z",
-    "contact_email": "asd@asd.com",
-    "status": true,
-    "count": 1,
-    "__v": 0
-  }*/
+  const handleConfirmBooking = async (_id) => {
+    const packet = { _id };
+    await fetch("http://localhost:3000/users/updateAmountSpent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(packet),
+    }).then((response) => {
+      if (response.ok) {
+        console.log("The booking has been confirmed");
+        setBookingList(
+          bookingList.map((booking) => {
+            if (booking._id === _id) {
+              return { ...booking, confirm: true };
+            }
+            return booking;
+          })
+        );
+      }
+    });
+  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page - 1);
@@ -130,22 +138,46 @@ export function ViewBookingsAccordion() {
                 className="bookings"
                 style={{ maxHeight: "400px", overflowY: "auto" }}
               >
+                <Row className="member-row mb-4 text-center">
+                  <Col md={2} className="table-title-book d-md-block d-none">
+                    Customer
+                  </Col>
+                  <Col md={2} className="table-title d-md-block d-none">
+                    Service
+                  </Col>
+                  <Col md={1} className="table-title-book d-md-block d-none">
+                    Price
+                  </Col>
+                  <Col md={3} className="table-title d-md-block d-none">
+                    Date and time
+                  </Col>
+                  <Col md={2} className="table-title d-md-block d-none">
+                    Confirm booking
+                  </Col>
+                  <Col md={2} className="table-title d-md-block d-none">
+                    Controls
+                  </Col>
+                </Row>
                 {bookingList
                   .slice(currentPage * perPage, (currentPage + 1) * perPage)
                   .map((booking, index) => (
                     <Row className="booking-row mb-4" key={index}>
-                      <Col>{userNames[index + currentPage * perPage]}</Col>
-                      <Col>{service[index + currentPage * perPage].name}</Col>
+                      <Col md={2}>
+                        {userNames[index + currentPage * perPage]}
+                      </Col>
+                      <Col md={2}>
+                        {service[index + currentPage * perPage].name}
+                      </Col>
                       {booking.useCoupon ? (
-                        <Col>
+                        <Col md={1}>
                           {service[index + currentPage * perPage].price - 15}
                         </Col>
                       ) : (
-                        <Col>
+                        <Col md={1}>
                           {service[index + currentPage * perPage].price}
                         </Col>
                       )}
-                      <Col>
+                      <Col md={3}>
                         {new Date(booking.startTime).toLocaleString("en-UK", {
                           weekday: "long",
                           year: "numeric",
@@ -156,7 +188,22 @@ export function ViewBookingsAccordion() {
                           timeZone: "UTC",
                         })}
                       </Col>
-                      <Col>
+                      <Col className="confirmed" md={2}>
+                        {booking.confirm ? (
+                          <p>CONFIRMED</p>
+                        ) : (
+                          <Button
+                            className="colored-btn"
+                            onClick={() => {
+                              handleConfirmBooking(booking._id);
+                              booking.confirm = true;
+                            }}
+                          >
+                            Confirm bookin
+                          </Button>
+                        )}
+                      </Col>
+                      <Col md={2}>
                         <Button
                           className="colored-btn"
                           onClick={() => handleDelete(booking._id)}

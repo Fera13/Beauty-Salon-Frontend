@@ -21,17 +21,13 @@ export function AdminPage() {
   useEffect(() => {
     (async () => {
       let loyal = await (
-        await fetch(
-          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
-        )
+        await fetch(`http://localhost:3000/statistic/getMostLoyal`)
       ).json();
       setLoyalList(loyal);
     })();
     (async () => {
       let loyal = await (
-        await fetch(
-          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
-        )
+        await fetch(`http://localhost:3000/statistic/getMostLoyal`)
       ).json();
       setLoyalList(loyal);
     })();
