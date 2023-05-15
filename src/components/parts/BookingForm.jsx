@@ -15,7 +15,7 @@ export function BookingForm({
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      await fetch("http://localhost:3000/users/getUserData", {
+      await fetch("https://combative-cod-stole.cyclic.app/users/getUserData", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export function BookingForm({
       useCoupon: useCoupon,
       status: true,
     };
-    await fetch(`http://localhost:3000/bookings/postBooking`, {
+    await fetch(`https://combative-cod-stole.cyclic.app/bookings/postBooking`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

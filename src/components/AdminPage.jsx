@@ -21,13 +21,17 @@ export function AdminPage() {
   useEffect(() => {
     (async () => {
       let loyal = await (
-        await fetch(`http://localhost:3000/statistic/getMostLoyal`)
+        await fetch(
+          `https://combative-cod-stole.cyclic.app/statistic/getMostLoyal`
+        )
       ).json();
       setLoyalList(loyal);
     })();
     (async () => {
       let loyal = await (
-        await fetch(`http://localhost:3000/statistic/getMostLoyal`)
+        await fetch(
+          `https://combative-cod-stole.cyclic.app/statistic/getMostLoyal`
+        )
       ).json();
       setLoyalList(loyal);
     })();

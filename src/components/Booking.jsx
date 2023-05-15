@@ -29,38 +29,38 @@ export function Booking() {
   const [employees, setEmployees] = useState([]);
   const [selectedDate, setSelectedDate] = useState(tomorrow);
   const [isLoading, setIsLoading] = useState(true);
-  const [showBookingForm, setShowBookingForm] = useState(false)
-  const [startTime, setStartTime] = useState(null)
-  const [endTime, setEndTime] = useState(null)
-  const [error, setError] = useState(false)
-  
-  function handleBooking(start,end) {
-    setStartTime(start)
-    setEndTime(end)
-    setShowBookingForm(true)
-  } 
-  
-  const handleNewTimeSlots = (newTimeSlots) => {
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [error, setError] = useState(false);
 
+  function handleBooking(start, end) {
+    setStartTime(start);
+    setEndTime(end);
+    setShowBookingForm(true);
+  }
+
+  const handleNewTimeSlots = (newTimeSlots) => {
     const updatedTimeSlots = timeSlots.map((timeSlot) => {
-      if (timeSlot.start === newTimeSlots.start && timeSlot.end === newTimeSlots.end) {
+      if (
+        timeSlot.start === newTimeSlots.start &&
+        timeSlot.end === newTimeSlots.end
+      ) {
         return { ...timeSlot, isAvailable: false };
       } else {
         return timeSlot;
       }
-    })
+    });
 
-    setTimeSlots(updatedTimeSlots)
-
-  }
-
+    setTimeSlots(updatedTimeSlots);
+  };
 
   useEffect(() => {
     async function fetchTimeSlots() {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3000/bookings/getAvailableTimeSlots/${_id}/${selectedDate}`,
+          `https://combative-cod-stole.cyclic.app/bookings/getAvailableTimeSlots/${_id}/${selectedDate}`,
           {
             method: "GET",
             headers: {},
@@ -73,12 +73,12 @@ export function Booking() {
           setTimeSlots(result.timeSlots);
           setService(result.service);
           setIsLoading(false);
-          setError(false)
+          setError(false);
           return;
         } else if (response.status === 400) {
           setTimeSlots([]);
           setService([]);
-          setError(true)
+          setError(true);
           setIsLoading(false);
           return;
         } else {
@@ -101,7 +101,7 @@ export function Booking() {
         return;
       }
       await fetch(
-        `http://localhost:3000/employees/getEmployees/${employee_ids.join(
+        `https://combative-cod-stole.cyclic.app/employees/getEmployees/${employee_ids.join(
           ","
         )}`,
         {
@@ -117,7 +117,7 @@ export function Booking() {
     }
     fetchEmployees();
   }, [service]);
-  
+
   const isDateDisabled = (date) => {
     return date < new Date();
   };
@@ -166,13 +166,16 @@ export function Booking() {
               {employees.length > 0 ? employees[0].name : null}
             </p>
           </div>
-          {showBookingForm ? <BookingForm 
-            start={startTime} 
-            end={endTime} 
-            service={service} 
-            employee={employees[0]} 
-            onClose={() => setShowBookingForm(false)} onTimeSlotsChange={handleNewTimeSlots}/>  
-          : null}
+          {showBookingForm ? (
+            <BookingForm
+              start={startTime}
+              end={endTime}
+              service={service}
+              employee={employees[0]}
+              onClose={() => setShowBookingForm(false)}
+              onTimeSlotsChange={handleNewTimeSlots}
+            />
+          ) : null}
           <table class="time-table">
             <thead></thead>
             {isLoading ? (
@@ -237,8 +240,10 @@ export function Booking() {
                 ) : (
                   <tr>
                     <td>
-                    <div class="alert alert-danger" role="alert"> No available Time Slots </div>
-
+                      <div class="alert alert-danger" role="alert">
+                        {" "}
+                        No available Time Slots{" "}
+                      </div>
                     </td>
                   </tr>
                 )}

@@ -10,18 +10,20 @@ function ChangePassword(props) {
   const [successMessage, setSuccessMessage] = useState(false);
 
   const handleSave = async () => {
-
-    const response = await fetch("http://localhost:3000/users/newPassword", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        currentPassword,
-        password,
-      }),
-    });
+    const response = await fetch(
+      "https://combative-cod-stole.cyclic.app/users/newPassword",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          currentPassword,
+          password,
+        }),
+      }
+    );
 
     if (response.ok) {
       setSuccessMessage(true);
@@ -53,7 +55,7 @@ function ChangePassword(props) {
       </Modal.Header>
       <Modal.Body>
         {successMessage && (
-        <div className="text-success">Password changed successfully!</div>
+          <div className="text-success">Password changed successfully!</div>
         )}
         <Form className="d-flex flex-column mx-auto">
           <Form.Group controlId="currentPassword">
