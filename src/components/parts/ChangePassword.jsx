@@ -11,7 +11,7 @@ function ChangePassword(props) {
 
   const handleSave = async () => {
     const response = await fetch(
-      "https://backend-saloon.onrender.com/users/newPassword",
+      "https://beauty-salon-back.onrender.com/users/newPassword",
       {
         method: "POST",
         headers: {

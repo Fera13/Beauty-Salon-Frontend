@@ -28,7 +28,7 @@ export function ViewBookingsAccordion() {
     (async () => {
       const bookings = await (
         await fetch(
-          `https://backend-saloon.onrender.com/bookings/getBookings`,
+          `https://beauty-salon-back.onrender.com/bookings/getBookings`,
           {
             method: "GET",
             headers: {},
@@ -41,7 +41,7 @@ export function ViewBookingsAccordion() {
         bookings.map(async (booking) => {
           const service = await (
             await fetch(
-              `https://backend-saloon.onrender.com/services/getServiceById/${booking.service_id}`
+              `https://beauty-salon-back.onrender.com/services/getServiceById/${booking.service_id}`
             )
           ).json();
           return service;
@@ -59,7 +59,7 @@ export function ViewBookingsAccordion() {
         bookingList.map(async (booking) => {
           const user = await (
             await fetch(
-              `https://backend-saloon.onrender.com/users/getUserData/${booking.user_id}`
+              `https://beauty-salon-back.onrender.com/users/getUserData/${booking.user_id}`
             )
           ).json();
           return user.username;
@@ -76,7 +76,7 @@ export function ViewBookingsAccordion() {
     (async () => {
       const packet = { _id };
       let response = await fetch(
-        `https://backend-saloon.onrender.com/bookings/deleteBooking`,
+        `https://beauty-salon-back.onrender.com/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),
@@ -102,14 +102,17 @@ export function ViewBookingsAccordion() {
 
   const handleConfirmBooking = async (_id) => {
     const packet = { _id };
-    await fetch("https://backend-saloon.onrender.com/users/updateAmountSpent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(packet),
-    }).then((response) => {
+    await fetch(
+      "https://beauty-salon-back.onrender.com/users/updateAmountSpent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(packet),
+      }
+    ).then((response) => {
       if (response.ok) {
         console.log("The booking has been confirmed");
         setBookingList(

@@ -12,7 +12,7 @@ const ProtectedRoute = () => {
   const { pathname } = location;
 
   useEffect(() => {
-    fetch("https://backend-saloon.onrender.com/checkAuth", {
+    fetch("https://beauty-salon-back.onrender.com/checkAuth", {
       headers: {},
       credentials: "include",
     })

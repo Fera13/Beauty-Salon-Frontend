@@ -23,7 +23,7 @@ export function AdminPage() {
     (async () => {
       let loyal = await (
         await fetch(
-          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
+          `https://beauty-salon-back.onrender.com/statistic/getMostLoyal`
         )
       ).json();
       setLoyalList(loyal);
@@ -31,7 +31,7 @@ export function AdminPage() {
     (async () => {
       let memberAmount = await (
         await fetch(
-          `https://backend-saloon.onrender.com/statistic/getUsersCount`
+          `https://beauty-salon-back.onrender.com/statistic/getUsersCount`
         )
       ).json();
       setMemberAmount(memberAmount);
@@ -39,7 +39,7 @@ export function AdminPage() {
     (async () => {
       let loyal = await (
         await fetch(
-          `https://backend-saloon.onrender.com/statistic/getMostLoyal`
+          `https://beauty-salon-back.onrender.com/statistic/getMostLoyal`
         )
       ).json();
       setLoyalList(loyal);

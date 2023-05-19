@@ -21,7 +21,7 @@ function User() {
 
   const handleUpdateEmailClick = async () => {
     const response = await fetch(
-      "https://backend-saloon.onrender.com/admin/updateUser",
+      "https://beauty-salon-back.onrender.com/admin/updateUser",
       {
         method: "PUT",
         headers: {
@@ -40,7 +40,7 @@ function User() {
 
   const handleUpdatePhoneNumberClick = async () => {
     const response = await fetch(
-      "https://backend-saloon.onrender.com/admin/updateUser",
+      "https://beauty-salon-back.onrender.com/admin/updateUser",
       {
         method: "PUT",
         headers: {
@@ -59,7 +59,7 @@ function User() {
 
   const handleUserBookings = async () => {
     const response = await fetch(
-      `https://backend-saloon.onrender.com/bookings/getBookingsByUserId`,
+      `https://beauty-salon-back.onrender.com/bookings/getBookingsByUserId`,
       {
         method: "GET",
         headers: {
@@ -74,7 +74,7 @@ function User() {
       const bookingsWithService = await Promise.all(
         data.map(async (booking) => {
           const serviceResponse = await fetch(
-            `https://backend-saloon.onrender.com/services/getServiceById/${booking.service_id}`,
+            `https://beauty-salon-back.onrender.com/services/getServiceById/${booking.service_id}`,
             {
               method: "GET",
               headers: {
@@ -110,7 +110,7 @@ function User() {
   };
   const fetchUserData = async () => {
     const response = await fetch(
-      `https://backend-saloon.onrender.com/users/getUserData`,
+      `https://beauty-salon-back.onrender.com/users/getUserData`,
       {
         method: "GET",
         headers: {},
@@ -143,7 +143,7 @@ function User() {
     if (bookingToDelete) {
       const packet = { _id: bookingToDelete };
       const response = await fetch(
-        `https://backend-saloon.onrender.com/bookings/deleteBooking`,
+        `https://beauty-salon-back.onrender.com/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),
