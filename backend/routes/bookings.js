@@ -90,7 +90,6 @@ router.put("/updateBooking", async (req, res) => {
   }
 });
 
-
 router.post("/postBooking", authentication.authenticateUser, async (req, res) => {
     if (req.user.role == "admin") {
       return res.sendStatus(403)
@@ -118,15 +117,8 @@ router.post("/postBooking", authentication.authenticateUser, async (req, res) =>
             res.sendStatus(200);
             const currBooking = await bookingModel.findById(booking._id);
             const currUser = await userModel.findById(currBooking.user_id);
-            const currService = await serviceModel.findById(currBooking.service_id);
 
-            let amount = parseInt(currService.price)
             currUser.bookingAmount += 1;
-            currUser.amountSpent += amount;
-            if(currUser.amountSpent >= 500){
-              currUser.couponAmount += 1
-              currUser.amountSpent -= 500;
-            }
 
             if (req.body.useCoupon) {
               currUser.couponAmount -= 1

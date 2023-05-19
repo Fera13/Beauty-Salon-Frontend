@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {
         { _id: user._id, 
           role: user.role }, 
         process.env.ACCESS_TOKEN)
-        res.cookie("accessToken", accessToken, { maxAge: 86400000 })
+        res.cookie("accessToken", accessToken, { maxAge: 86400000, secure: true, httpOnly: true})
       res.json({accessToken: accessToken, user: user})
     } else {
       res.status(401).json({ error: "Incorrect password" });
@@ -129,6 +129,7 @@ router.post("/updateAmountSpent", [authentication.authenticateUser, authenticati
       console.log(booking.confirm);
       let amountSpent = user.amountSpent; 
       let servicePrice = service.price;
+
       if (booking.useCoupon) {
         amountSpent = amountSpent + Number(servicePrice) - 15; // Ensure numerical addition
       } else {
@@ -136,7 +137,7 @@ router.post("/updateAmountSpent", [authentication.authenticateUser, authenticati
       }
   
       booking.confirm = true
-      
+
       if (amountSpent >= 500) {
         amountSpent -= 500
         user.couponAmount += 1
