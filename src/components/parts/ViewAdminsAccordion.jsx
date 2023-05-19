@@ -19,7 +19,7 @@ export function ViewAdminsAccordion() {
   useEffect(() => {
     (async () => {
       let admins = await (
-        await fetch(`http://localhost:3000/admin/getAdmins`)
+        await fetch(`https://backend-saloon.onrender.com/admin/getAdmins`)
       ).json();
       setAdminList(admins);
     })();
@@ -64,13 +64,16 @@ export function ViewAdminsAccordion() {
 
     (async () => {
       const packet = { id, username, email, phoneNumber };
-      let response = await fetch(`http://localhost:3000/admin/updateAdmin`, {
-        method: "PUT",
-        body: JSON.stringify(packet),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let response = await fetch(
+        `https://backend-saloon.onrender.com/admin/updateAdmin`,
+        {
+          method: "PUT",
+          body: JSON.stringify(packet),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.status === 200) {
       } else {
         setRegistrationSentence("Can't update");
@@ -105,13 +108,16 @@ export function ViewAdminsAccordion() {
   const handleDelete = (id) => {
     (async () => {
       const packet = { id };
-      let response = await fetch(`http://localhost:3000/admin/removeAdmin`, {
-        method: "DELETE",
-        body: JSON.stringify(packet),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let response = await fetch(
+        `https://backend-saloon.onrender.com/admin/removeAdmin`,
+        {
+          method: "DELETE",
+          body: JSON.stringify(packet),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.status === 200) {
         setAdminList((prevAdminList) => {
           const updatedAdminList = prevAdminList.filter(

@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GoogleLogin } from "./GoogleLogin";
 
 export const Login = (props) => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState(null);
@@ -26,14 +25,17 @@ export const Login = (props) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://backend-saloon.onrender.com/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await response.json();
 

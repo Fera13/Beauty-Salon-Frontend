@@ -20,32 +20,38 @@ function User() {
   const [coupon, setCoupon] = useState("");
 
   const handleUpdateEmailClick = async () => {
-    const response = await fetch("http://localhost:3000/admin/updateUser", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: userInfo._id,
-        email: userInfo.email,
-      }),
-    });
+    const response = await fetch(
+      "https://backend-saloon.onrender.com/admin/updateUser",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: userInfo._id,
+          email: userInfo.email,
+        }),
+      }
+    );
     if (response.ok) {
       setEditEmailMode(false);
     }
   };
 
   const handleUpdatePhoneNumberClick = async () => {
-    const response = await fetch("http://localhost:3000/admin/updateUser", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: userInfo._id,
-        phoneNumber: userInfo.phoneNumber,
-      }),
-    });
+    const response = await fetch(
+      "https://backend-saloon.onrender.com/admin/updateUser",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: userInfo._id,
+          phoneNumber: userInfo.phoneNumber,
+        }),
+      }
+    );
     if (response.ok) {
       setEditPhoneNumberMode(false);
     }
@@ -53,7 +59,7 @@ function User() {
 
   const handleUserBookings = async () => {
     const response = await fetch(
-      `http://localhost:3000/bookings/getBookingsByUserId`,
+      `https://backend-saloon.onrender.com/bookings/getBookingsByUserId`,
       {
         method: "GET",
         headers: {
@@ -68,7 +74,7 @@ function User() {
       const bookingsWithService = await Promise.all(
         data.map(async (booking) => {
           const serviceResponse = await fetch(
-            `http://localhost:3000/services/getServiceById/${booking.service_id}`,
+            `https://backend-saloon.onrender.com/services/getServiceById/${booking.service_id}`,
             {
               method: "GET",
               headers: {
@@ -103,11 +109,14 @@ function User() {
     }
   };
   const fetchUserData = async () => {
-    const response = await fetch(`http://localhost:3000/users/getUserData`, {
-      method: "GET",
-      headers: {},
-      credentials: "include",
-    });
+    const response = await fetch(
+      `https://backend-saloon.onrender.com/users/getUserData`,
+      {
+        method: "GET",
+        headers: {},
+        credentials: "include",
+      }
+    );
 
     if (response.ok) {
       const result = await response.json();
@@ -134,7 +143,7 @@ function User() {
     if (bookingToDelete) {
       const packet = { _id: bookingToDelete };
       const response = await fetch(
-        `http://localhost:3000/bookings/deleteBooking`,
+        `https://backend-saloon.onrender.com/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),
