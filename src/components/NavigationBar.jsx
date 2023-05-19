@@ -28,7 +28,7 @@ function NavigationBar() {
   };
 
   const handleUserIconClick = () => {
-    fetch("https://combative-cod-stole.cyclic.app/users/getUserData", {
+    fetch("http://localhost:3000/users/getUserData", {
       method: "GET",
       credentials: "include",
     })

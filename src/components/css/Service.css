@@ -1,8 +1,65 @@
-.service-container {
-    background-image: url("/src/components/Images/ren-ran-bBiuSdck8tU-unsplash.jpg");
-    background-repeat: no-repeat;
+.Haircut-and-Styling{
+    background-image: url("../Images/Hair.jpg");
+    height: 250px;
+    width: 300px;
     background-size: cover;
-    background-attachment: fixed;
+    background-position: "center";
+}
+
+.Beard-grooming{
+    background-image: url("../Images/Beard.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Makeup {
+    background-image: url("../Images/Makeup.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Tanning-services{
+    background-image: url("../Images/Tanning.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Manicures-and-pedicures {
+    background-image: url("../Images/Nails.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Waxing-and-hair-removal{
+    background-image: url("../Images/Wax.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Massage-therapy {
+    background-image: url("../Images/Massage.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
+}
+
+.Skincare-services {
+    background-image: url("../Images/Skin.jpg");
+    height: 250px;
+    width: 300px;
+    background-size: cover;
+    background-position: "center";
 }
 
 .custom.card {

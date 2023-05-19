@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Table, Modal } from "react-bootstrap";
+import { Button, Card, Table, Modal, Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "./css/User.css";
 import { ConfirmationModal } from "./parts/ConfirmationModal";
@@ -20,38 +20,32 @@ function User() {
   const [coupon, setCoupon] = useState("");
 
   const handleUpdateEmailClick = async () => {
-    const response = await fetch(
-      "https://combative-cod-stole.cyclic.app/admin/updateUser",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: userInfo._id,
-          email: userInfo.email,
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:3000/admin/updateUser", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userInfo._id,
+        email: userInfo.email,
+      }),
+    });
     if (response.ok) {
       setEditEmailMode(false);
     }
   };
 
   const handleUpdatePhoneNumberClick = async () => {
-    const response = await fetch(
-      "https://combative-cod-stole.cyclic.app/admin/updateUser",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: userInfo._id,
-          phoneNumber: userInfo.phoneNumber,
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:3000/admin/updateUser", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userInfo._id,
+        phoneNumber: userInfo.phoneNumber,
+      }),
+    });
     if (response.ok) {
       setEditPhoneNumberMode(false);
     }
@@ -59,7 +53,7 @@ function User() {
 
   const handleUserBookings = async () => {
     const response = await fetch(
-      `https://combative-cod-stole.cyclic.app/bookings/getBookingsByUserId`,
+      `http://localhost:3000/bookings/getBookingsByUserId`,
       {
         method: "GET",
         headers: {
@@ -74,7 +68,7 @@ function User() {
       const bookingsWithService = await Promise.all(
         data.map(async (booking) => {
           const serviceResponse = await fetch(
-            `https://combative-cod-stole.cyclic.app/services/getServiceById/${booking.service_id}`,
+            `http://localhost:3000/services/getServiceById/${booking.service_id}`,
             {
               method: "GET",
               headers: {
@@ -109,14 +103,11 @@ function User() {
     }
   };
   const fetchUserData = async () => {
-    const response = await fetch(
-      `https://combative-cod-stole.cyclic.app/users/getUserData`,
-      {
-        method: "GET",
-        headers: {},
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`http://localhost:3000/users/getUserData`, {
+      method: "GET",
+      headers: {},
+      credentials: "include",
+    });
 
     if (response.ok) {
       const result = await response.json();
@@ -143,7 +134,7 @@ function User() {
     if (bookingToDelete) {
       const packet = { _id: bookingToDelete };
       const response = await fetch(
-        `https://combative-cod-stole.cyclic.app/bookings/deleteBooking`,
+        `http://localhost:3000/bookings/deleteBooking`,
         {
           method: "DELETE",
           body: JSON.stringify(packet),
@@ -176,13 +167,13 @@ function User() {
   };
 
   return (
-    <div className="container-fluid">
+    <Container className="container-fluid">
       <Card>
         <Card.Body>
-          <div className="welcome-text">
+          <Container className="welcome-text">
             <h1>Welcome, {userInfo.username}!</h1>
-          </div>
-          <div className="user-details">
+          </Container>
+          <Container className="user-details">
             <Table>
               <tbody>
                 <tr>
@@ -285,11 +276,11 @@ function User() {
               show={showPasswordModal}
               onClose={() => setShowPasswordModal(false)}
             />
-          </div>
-          <div className="bookings">
+          </Container>
+          <Container className="bookings">
             <h3>Your Bookings:</h3>
             {isLoading ? (
-              <div className="spinner-border"></div>
+              <Container className="spinner-border"></Container>
             ) : bookings.length > 0 ? (
               <Table className="bookings-table" bordered hover>
                 <thead>
@@ -320,7 +311,7 @@ function User() {
                           size="sm"
                           onClick={() => handleDeleteBooking(booking._id)}
                         >
-                          Cancel booking
+                          Cancel
                         </Button>
                       </td>
                     </tr>
@@ -357,8 +348,8 @@ function User() {
                 onClose={() => setShowModal(false)}
               />
             )}
-            <div className="card coupon-card">
-              <div className="display-coupons">
+            <Container className="card coupon-card">
+              <Container className="display-coupons">
                 <h3>Coupons:</h3>
                 <p>
                   If you spend $500, you'll receive a coupon for $15 off your
@@ -382,12 +373,12 @@ function User() {
                   <span id="coupon-amount">{userInfo.couponAmount}</span> coupon
                   to use
                 </h4>
-              </div>
-            </div>
-          </div>
+              </Container>
+            </Container>
+          </Container>
         </Card.Body>
       </Card>
-    </div>
+    </Container>
   );
 }
 

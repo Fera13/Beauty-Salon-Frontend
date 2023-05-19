@@ -37,16 +37,13 @@ export function Registration({ isAdmin }) {
       phoneNumber: formData.phoneNumber,
     };
     if (isAdmin) {
-      const response = await fetch(
-        "https://combative-cod-stole.cyclic.app/admin/addAdmin",
-        {
-          method: "POST",
-          body: JSON.stringify(packet),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3000/admin/addAdmin", {
+        method: "POST",
+        body: JSON.stringify(packet),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.status === 201) {
         setRegistrationSentence("You have succesfuly registered an admin!");
         setShowModal(true);
@@ -55,16 +52,13 @@ export function Registration({ isAdmin }) {
         setShowModal(true);
       }
     } else {
-      const response = await fetch(
-        "https://combative-cod-stole.cyclic.app/users/register",
-        {
-          method: "POST",
-          body: JSON.stringify(packet),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3000/users/register", {
+        method: "POST",
+        body: JSON.stringify(packet),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.status === 201) {
         setRegistrationSentence("You have succesfuly registered!");
         setShowModal(true);
