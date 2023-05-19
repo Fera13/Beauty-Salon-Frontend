@@ -19,13 +19,11 @@ const ProtectedRoute = () => {
       .then((response) => {
         if (response.ok) {
           setIsLoggedIn(true);
-          return response.json();
+          let result = response.json();
+          setRole(result.role);
         } else {
           setShowPopup(true);
         }
-      })
-      .then((result) => {
-        setRole(result.role);
       })
       .finally(() => {
         setIsLoading(false);

@@ -3,8 +3,6 @@ import { Navbar, Nav, Button, Modal } from "react-bootstrap";
 import "./css/LoginForm.css";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { GoogleLogin } from "./GoogleLogin";
-
 export const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -87,9 +85,6 @@ export const Login = (props) => {
           required
         />
         <button type="submit">Log In</button>
-        <Button className="googleButton" variant="primary">
-          <GoogleLogin />
-        </Button>
       </form>
       {loginStatus !== null && (
         <p className={`message ${loginStatus ? "success" : "error"}`}>
